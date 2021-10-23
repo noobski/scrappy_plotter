@@ -11,7 +11,7 @@ from adafruit_motor import stepper
 from adafruit_motorkit import MotorKit # sets mode to BCM
 from ADCDevice import *
 from pen import Pen
-from ../ofer_libs/lib_vector import * 
+from lib_vector import * 
 
 class Plotter:
     def __init__(self):

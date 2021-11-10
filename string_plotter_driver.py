@@ -118,6 +118,7 @@ class Plotter:
         GPIO.cleanup()
         self.adc.close()
         self.pen.finishup()
+decode
 
 if __name__ == "__main__":
     try:

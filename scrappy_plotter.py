@@ -2,7 +2,7 @@ from random import *
 from PIL import Image, ImageDraw, ImageOps
 from util import *
 from graphics import *
-from scrappy_plotter import *
+from string_plotter_driver import *
 
 def sortlines(lines):
     print("optimizing stroke sequence...")
@@ -81,38 +81,37 @@ def scale_points(lines):
         scaled_lines.append(new_line)
     return scaled_lines
 
-def scrappy_plotter_plot_points(lines):
+def scrappy_plotter_plot_points(plotter, lines):
     n_lines = len(lines)
     n = n_lines
+    print('Starting to draw {} lines'.format(n_lines))
     for l in lines:
         # go to first coordinate with the pen 'up'
         pen_down = False
         for p in l:
-            line_to(p[0], p[1], pen_down)
+            plotter.line_to(p[0], p[1], pen_down)
             pen_down = True
         print('{} of {} lines left'.format(n, n_lines))
         n -= 1
     
-def main_plot():
+def main_plot(plotter):
     linedraw.resolution = 1024 # smaller resolution creates faster compute time
     linedraw.draw_hatch = False # criss-cross shading yes/no
     linedraw.hatch_size = 8 # shading patch size (8, 16, 32, ..)
     linedraw.show_bitmap = True
     linedraw.contour_simplify = 1 # 
     
-    lines = linedraw.sketch("./images/bros.jpg")
+    lines = linedraw.sketch("./images/itay2.jpeg")
     lines = sortlines(lines)
     scaled_lines = scale_points(lines)
     visualize_graphics(scaled_lines)
-    # scrappy_plotter_plot_points(scaled_lines) # make the plotter draw the picture!
+    scrappy_plotter_plot_points(plotter, scaled_lines) # make the plotter draw the picture!
     
 if __name__=="__main__":
     import linedraw
-    # import plotter. TODO: Make it a class
     try:
-        # plotter_startup()
-        main_plot()
-        # plotter_finishup()
+        plotter = Plotter()
+        main_plot(plotter)
+        plotter.finishup()
     except KeyboardInterrupt: # Press ctrl-c to end the program.
-        # plotter_finishup()
-        pass
+        plotter.finishup()

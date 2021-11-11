@@ -39,6 +39,7 @@ class Vector:
             return self
         self.x, self.y = self.x/m, self.y/m
         return self
+        
 # limit value to min and max
 def limit(v, min_v, max_v):
     v = min_v if v<min_v else v
@@ -76,3 +77,11 @@ def print_midpoints(midpoints):
         
 def sign(a):
     return 1 if a>0 else -1 if a<0 else 0
+    
+def debug(level, msg):
+    if level:
+        print(msg);
+        
+# TESTING
+if __name__ == "__main__":
+    debug(True, 'ofer {}'.format('vilenski'))

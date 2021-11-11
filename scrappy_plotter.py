@@ -101,7 +101,7 @@ def main_plot(plotter):
     linedraw.show_bitmap = True
     linedraw.contour_simplify = 1 # 
     
-    lines = linedraw.sketch("./images/itay2.jpeg")
+    lines = linedraw.sketch("./images/input.jpg")
     lines = sortlines(lines)
     scaled_lines = scale_points(lines)
     visualize_graphics(scaled_lines)

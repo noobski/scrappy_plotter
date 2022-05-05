@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 
+# this controls the up/down of the pen
+
 GPIO.setmode(GPIO.BCM)
 
 class Pen:
